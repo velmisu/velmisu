@@ -71,10 +71,48 @@
         <div class="section-header">
           <span class="section-label">Notre Carte</span>
           <h2 class="section-title">Nos Tiramisus</h2>
-          <p class="section-desc">Chaque saveur est préparée à la commande avec des ingrédients sélectionnés.</p>
+          <p class="section-desc">Chaque saveur est préparée à la commande — choisissez votre format, puis votre parfum.</p>
         </div>
-        <div class="products-grid" id="productsGrid">
-          <!-- Rendered dynamically by script.js -->
+
+        <!-- Interactive Product Configurator -->
+        <div class="product-configurator" id="productConfigurator">
+          <div class="configurator-visual">
+            <div class="configurator-image-wrap">
+              <img id="configuratorImage" class="configurator-image" src="" alt="" loading="lazy">
+              <div class="configurator-image-fallback" id="configuratorFallback" style="display:none;">V</div>
+            </div>
+            <span class="configurator-tag" id="configuratorTag" hidden></span>
+          </div>
+
+          <div class="configurator-panel">
+            <div class="configurator-step">
+              <p class="configurator-step-label"><span>1</span> Choisir le format</p>
+              <div class="size-selector" id="sizeSelector" role="radiogroup" aria-label="Format du tiramisu"></div>
+            </div>
+
+            <div class="configurator-step">
+              <p class="configurator-step-label"><span>2</span> Choisir la saveur</p>
+              <div class="flavor-selector" id="flavorSelector" role="radiogroup" aria-label="Saveur du tiramisu"></div>
+            </div>
+
+            <div class="configurator-info">
+              <h3 class="configurator-title" id="configuratorTitle"></h3>
+              <p class="configurator-desc" id="configuratorDesc"></p>
+              <p class="configurator-unavailable" id="configuratorUnavailable" hidden>Combinaison temporairement indisponible</p>
+              <p class="configurator-price" id="configuratorPrice"></p>
+            </div>
+
+            <div class="configurator-actions">
+              <button class="btn btn-primary btn-full" id="configuratorAddCart" disabled>Ajouter au panier</button>
+              <button class="btn btn-outline btn-full" id="configuratorOrder" disabled>Commander</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flavor discovery cards -->
+        <div class="flavors-overview">
+          <p class="flavors-overview-label">Nos saveurs</p>
+          <div class="flavors-grid" id="flavorsGrid"></div>
         </div>
       </div>
     </section>
