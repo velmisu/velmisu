@@ -1,27 +1,35 @@
 /* =============================================
-   Velmisu — Catalog, Configurator, Cart & Orders
-   Edit flavors, sizes, and variants below
+   Velmisu — Product Cards, Cart & Orders
+   Edit products below (name, description, images, prices)
    ============================================= */
 
 const WHATSAPP_NUMBER = '212650527938';
 const CART_STORAGE_KEY = 'velmisu_cart';
 
-// ── FLAVORS ───────────────────────────────────
-// Edit names, descriptions, tags, and availability here
-const flavors = [
+// ── FORMAT LABELS ─────────────────────────────
+const sizes = [
+  { id: 'small', name: 'Petit' },
+  { id: 'medium', name: 'Moyen' },
+  { id: 'large', name: 'Grand' },
+  { id: 'xlarge', name: 'Extra Large' },
+];
+
+// ── PRODUCTS ──────────────────────────────────
+// Edit name, description, images, and prices here
+const products = [
   {
     id: 'cocoa',
     name: 'Cacao Classique',
     description: 'La recette originale italienne — mascarpone crémeux, espresso intense et cacao amer.',
     tag: 'Best-seller',
     available: true,
-  },
-  {
-    id: 'lemon',
-    name: 'Citron',
-    description: 'Crème mascarpone légèrement acidulée, zeste de citron frais et biscuit imbibé au limoncello.',
-    tag: 'Fraîcheur',
-    available: true,
+    images: ['IMG_6004.JPG', 'IMG_6003.jpg', 'img_7097.jpg'],
+    sizes: {
+      small:  { price: 30,  available: true },
+      medium: { price: 45,  available: true },
+      large:  { price: 65,  available: true },
+      xlarge: { price: 95,  available: true },
+    },
   },
   {
     id: 'lotus',
@@ -29,6 +37,41 @@ const flavors = [
     description: 'Biscuits Lotus caramélisés, crème vanillée et touche de spéculoos maison.',
     tag: 'Gourmand',
     available: true,
+    images: ['IMG_6004.JPG', 'images/lotus-medium.jpg', 'design-logo.png'],
+    sizes: {
+      small:  { price: 35,  available: true },
+      medium: { price: 48,  available: true },
+      large:  { price: 68,  available: true },
+      xlarge: { price: 98,  available: true },
+    },
+  },
+  {
+    id: 'lemon',
+    name: 'Citron',
+    description: 'Crème mascarpone légèrement acidulée, zeste de citron frais et biscuit imbibé au limoncello.',
+    tag: 'Fraîcheur',
+    available: true,
+    images: ['IMG_6003.jpg', 'images/lemon-medium.jpg', 'design-logo.png'],
+    sizes: {
+      small:  { price: 35,  available: true },
+      medium: { price: 48,  available: true },
+      large:  { price: 68,  available: true },
+      xlarge: { price: 98,  available: true },
+    },
+  },
+  {
+    id: 'lemon-cocoa',
+    name: 'Citron & Cacao',
+    description: 'L\'équilibre parfait entre la fraîcheur du citron et l\'intensité du cacao — une création unique Velmisu.',
+    tag: 'Signature',
+    available: true,
+    images: ['IMG_6003.jpg', 'IMG_6004.JPG', 'design-logo.png'],
+    sizes: {
+      small:  { price: 35,  available: true },
+      medium: { price: 48,  available: true },
+      large:  { price: 68,  available: true },
+      xlarge: { price: 98,  available: true },
+    },
   },
   {
     id: 'chocolate',
@@ -36,135 +79,75 @@ const flavors = [
     description: 'Chocolat noir 70%, ganache onctueuse et double dose de cacao pour les amateurs.',
     tag: 'Intense',
     available: true,
+    images: ['IMG_7097.JPG', 'images/chocolate-medium.jpg', 'design-logo.png'],
+    sizes: {
+      small:  { price: 35,  available: true },
+      medium: { price: 200, available: true },
+      large:  { price: 400, available: true },
+      xlarge: { price: 500, available: true },
+    },
   },
 ];
-
-// ── SIZES / FORMATS ───────────────────────────
-// Each size has a different physical presentation
-const sizes = [
-  {
-    id: 'small',
-    name: 'Petit',
-    subtitle: 'Portion individuelle',
-    available: true,
-  },
-  {
-    id: 'medium',
-    name: 'Moyen',
-    subtitle: 'Format classique',
-    available: true,
-  },
-  {
-    id: 'large',
-    name: 'Grand',
-    subtitle: 'Pour partager',
-    available: true,
-  },
-  {
-    id: 'xlarge',
-    name: 'Extra Large',
-    subtitle: 'Événement & fêtes',
-    available: true,
-  },
-];
-
-// ── VARIANTS (flavor × size) ──────────────────
-// Each combination has its own price, image, and availability
-// Image path pattern: images/{flavor}-{size}.jpg
-const variants = {
-  cocoa: {
-    small:  { price: 30, image: 'images/cocoa-small.jpg',  available: true },
-    medium: { price: 45, image: 'img_7097.jpg', available: true },
-    large:  { price: 65, image: 'IMG_6003.jpg',  available: true },
-    xlarge: { price: 95, image: 'images/cocoa-xlarge.jpg', available: true },
-  },
-  lemon: {
-    small:  { price: 35, image: 'images/lemon-small.jpg',  available: true },
-    medium: { price: 48, image: 'images/lemon-medium.jpg', available: true },
-    large:  { price: 68, image: 'images/lemon-large.jpg',  available: true },
-    xlarge: { price: 98, image: 'images/lemon-xlarge.jpg', available: true },
-  },
-  lotus: {
-    small:  { price: 35, image: 'images/lotus-small.jpg',  available: true },
-    medium: { price: 48, image: 'images/lotus-medium.jpg', available: true },
-    large:  { price: 68, image: 'images/lotus-large.jpg',  available: true },
-    xlarge: { price: 98, image: 'images/lotus-xlarge.jpg', available: true },
-  },
-  chocolate: {
-    small:  { price: 35, image: 'images/chocolate-small.jpg',  available: true },
-    medium: { price: 200, image: 'images/chocolate-medium.jpg', available: true },
-    large:  { price: 400, image: 'images/chocolate-large.jpg',  available: true },
-    xlarge: { price: 500, image: 'images/chocolate-xlarge.jpg', available: true },
-  },
-};
-
-// Fallback images while unique photos are being added
-const fallbackImages = {
-  cocoa: 'IMG_6004.JPG',
-  lemon: 'IMG_6003.jpg',
-  lotus: 'IMG_6004.JPG',
-  chocolate: 'IMG_7097.JPG',
-};
 
 // ── Catalog Helpers ─────────────────────────────
-function makeVariantId(flavorId, sizeId) {
-  return `${flavorId}-${sizeId}`;
+function makeVariantId(productId, sizeId) {
+  return `${productId}-${sizeId}`;
 }
 
 function parseVariantId(variantId) {
   for (const size of sizes) {
     const suffix = `-${size.id}`;
     if (variantId.endsWith(suffix)) {
-      return { flavorId: variantId.slice(0, -suffix.length), sizeId: size.id };
+      return { productId: variantId.slice(0, -suffix.length), sizeId: size.id };
     }
   }
   const parts = variantId.split('-');
-  return { flavorId: parts[0], sizeId: parts.slice(1).join('-') };
+  return { productId: parts[0], sizeId: parts.slice(1).join('-') };
 }
 
-function getFlavor(flavorId) {
-  return flavors.find((f) => f.id === flavorId);
+function getProduct(productId) {
+  return products.find((p) => p.id === productId);
 }
 
 function getSize(sizeId) {
   return sizes.find((s) => s.id === sizeId);
 }
 
-function getVariantData(flavorId, sizeId) {
-  return variants[flavorId]?.[sizeId] ?? null;
+function getSizeData(productId, sizeId) {
+  return getProduct(productId)?.sizes?.[sizeId] ?? null;
 }
 
-function getVariantImage(flavorId, sizeId) {
-  const data = getVariantData(flavorId, sizeId);
-  return data?.image || fallbackImages[flavorId] || 'design-logo.png';
+function getProductImage(productId) {
+  const product = getProduct(productId);
+  return product?.images?.[0] || 'design-logo.png';
 }
 
-function isVariantAvailable(flavorId, sizeId) {
-  const flavor = getFlavor(flavorId);
+function isVariantAvailable(productId, sizeId) {
+  const product = getProduct(productId);
   const size = getSize(sizeId);
-  const data = getVariantData(flavorId, sizeId);
-  return Boolean(flavor?.available && size?.available && data?.available);
+  const data = getSizeData(productId, sizeId);
+  return Boolean(product?.available && size && data?.available);
 }
 
 function buildVariant(variantId) {
-  const { flavorId, sizeId } = parseVariantId(variantId);
-  const flavor = getFlavor(flavorId);
+  const { productId, sizeId } = parseVariantId(variantId);
+  const product = getProduct(productId);
   const size = getSize(sizeId);
-  const data = getVariantData(flavorId, sizeId);
-  if (!flavor || !size || !data) return null;
+  const data = getSizeData(productId, sizeId);
+  if (!product || !size || !data) return null;
 
   return {
     id: variantId,
-    flavorId,
+    flavorId: productId,
     sizeId,
-    name: `${flavor.name} — ${size.name}`,
-    flavorName: flavor.name,
+    name: `${product.name} — ${size.name}`,
+    flavorName: product.name,
     sizeName: size.name,
-    description: flavor.description,
-    tag: flavor.tag,
+    description: product.description,
+    tag: product.tag,
     price: data.price,
-    image: getVariantImage(flavorId, sizeId),
-    available: isVariantAvailable(flavorId, sizeId),
+    image: getProductImage(productId),
+    available: isVariantAvailable(productId, sizeId),
   };
 }
 
@@ -172,23 +155,11 @@ function getVariantById(variantId) {
   return buildVariant(variantId);
 }
 
-function getMinPriceForFlavor(flavorId) {
-  const sizePrices = Object.values(variants[flavorId] || {})
-    .filter((v) => v.available)
-    .map((v) => v.price);
-  return sizePrices.length ? Math.min(...sizePrices) : null;
-}
-
-function getFirstAvailableCombination() {
-  for (const flavor of flavors) {
-    if (!flavor.available) continue;
-    for (const size of sizes) {
-      if (isVariantAvailable(flavor.id, size.id)) {
-        return { flavorId: flavor.id, sizeId: size.id };
-      }
-    }
-  }
-  return { flavorId: flavors[0].id, sizeId: sizes[0].id };
+function getDefaultSizeId(productId) {
+  const product = getProduct(productId);
+  if (!product) return 'medium';
+  const preferred = sizes.find((s) => isVariantAvailable(productId, s.id));
+  return preferred?.id || 'medium';
 }
 
 // ── DOM Elements ──────────────────────────────
@@ -217,23 +188,15 @@ const cartFooter = document.getElementById('cartFooter');
 const cartTotal = document.getElementById('cartTotal');
 const cartCheckoutBtn = document.getElementById('cartCheckoutBtn');
 const cartBrowseBtn = document.getElementById('cartBrowseBtn');
+const productsGrid = document.getElementById('productsGrid');
+const customOrderBtn = document.getElementById('customOrderBtn');
+const customOrderModal = document.getElementById('customOrderModal');
+const customOrderModalClose = document.getElementById('customOrderModalClose');
+const customOrderForm = document.getElementById('customOrderForm');
+const customOrderOccasion = document.getElementById('customOrderOccasion');
+const customOrderBirthdayError = document.getElementById('customOrderBirthdayError');
+const customOrderImage = document.getElementById('customOrderImage');
 
-const sizeSelector = document.getElementById('sizeSelector');
-const flavorSelector = document.getElementById('flavorSelector');
-const flavorsGrid = document.getElementById('flavorsGrid');
-const configuratorImage = document.getElementById('configuratorImage');
-const configuratorFallback = document.getElementById('configuratorFallback');
-const configuratorTag = document.getElementById('configuratorTag');
-const configuratorTitle = document.getElementById('configuratorTitle');
-const configuratorDesc = document.getElementById('configuratorDesc');
-const configuratorUnavailable = document.getElementById('configuratorUnavailable');
-const configuratorPrice = document.getElementById('configuratorPrice');
-const configuratorAddCart = document.getElementById('configuratorAddCart');
-const configuratorOrder = document.getElementById('configuratorOrder');
-
-const defaults = getFirstAvailableCombination();
-let selectedFlavorId = defaults.flavorId;
-let selectedSizeId = defaults.sizeId;
 let selectedProduct = null;
 let cart = loadCart();
 
@@ -304,165 +267,263 @@ function clearCart() {
   updateCartUI();
 }
 
-function getCurrentVariantId() {
-  return makeVariantId(selectedFlavorId, selectedSizeId);
-}
+// ── Product Cards ─────────────────────────────
+function renderProductCard(product) {
+  const defaultSizeId = getDefaultSizeId(product.id);
+  const defaultPrice = product.sizes[defaultSizeId]?.price ?? '—';
 
-// ── Configurator ──────────────────────────────
-function renderSizeSelector() {
-  sizeSelector.innerHTML = sizes.map((size) => {
-    const thumb = getVariantImage(selectedFlavorId, size.id);
-    const available = isVariantAvailable(selectedFlavorId, size.id);
-    const active = selectedSizeId === size.id;
+  const gallerySlides = product.images.map((src, i) => `
+    <div class="product-gallery-slide">
+      <img src="${src}" alt="${product.name} — photo ${i + 1}" loading="lazy"
+        onerror="this.src='design-logo.png'">
+    </div>
+  `).join('');
 
+  const galleryDots = product.images.map((_, i) => `
+    <button type="button" class="gallery-dot${i === 0 ? ' active' : ''}" data-slide="${i}"
+      aria-label="Photo ${i + 1}"></button>
+  `).join('');
+
+  const formatButtons = sizes.map((size) => {
+    const available = isVariantAvailable(product.id, size.id);
+    const active = size.id === defaultSizeId;
     return `
-      <button
-        type="button"
-        class="size-option${active ? ' active' : ''}"
-        data-size="${size.id}"
-        role="radio"
-        aria-checked="${active}"
-        aria-label="${size.name}"
-        ${available ? '' : 'disabled'}
-      >
-        <img src="${thumb}" alt="${size.name}" class="size-option-thumb" loading="lazy"
-          onerror="this.src='${fallbackImages[selectedFlavorId] || 'design-logo.png'}'">
-        <span class="size-option-name">${size.name}</span>
-      </button>
+      <button type="button" class="format-btn${active ? ' active' : ''}"
+        data-size="${size.id}" ${available ? '' : 'disabled'}>${size.name}</button>
     `;
   }).join('');
+
+  const tagHtml = product.tag
+    ? `<span class="product-tag">${product.tag}</span>`
+    : '';
+
+  return `
+    <article class="product-card" data-product-id="${product.id}" data-size="${defaultSizeId}" data-slide="0">
+      <div class="product-gallery">
+        <div class="product-gallery-viewport">
+          <div class="product-gallery-track">
+            ${gallerySlides}
+          </div>
+        </div>
+        <button type="button" class="gallery-nav gallery-prev" aria-label="Photo précédente">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button type="button" class="gallery-nav gallery-next" aria-label="Photo suivante">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+        <div class="gallery-dots">${galleryDots}</div>
+      </div>
+      <div class="product-card-body">
+        ${tagHtml}
+        <h3 class="product-name">${product.name}</h3>
+        <p class="product-desc">${product.description}</p>
+        <p class="product-format-label">Choisir le format</p>
+        <div class="format-selector" role="radiogroup" aria-label="Format pour ${product.name}">
+          ${formatButtons}
+        </div>
+        <p class="product-price" data-price>${defaultPrice} <span>DH</span></p>
+        <div class="product-card-actions">
+          <button type="button" class="btn btn-primary btn-full product-add-cart">Ajouter au panier</button>
+        </div>
+      </div>
+    </article>
+  `;
 }
 
-function renderFlavorSelector() {
-  flavorSelector.innerHTML = flavors.map((flavor) => {
-    const available = sizes.some((size) => isVariantAvailable(flavor.id, size.id));
-    const active = selectedFlavorId === flavor.id;
+function updateCardPrice(card) {
+  const productId = card.dataset.productId;
+  const sizeId = card.dataset.size;
+  const priceEl = card.querySelector('[data-price]');
+  const addBtn = card.querySelector('.product-add-cart');
+  const data = getSizeData(productId, sizeId);
+  const available = isVariantAvailable(productId, sizeId);
 
-    return `
-      <button
-        type="button"
-        class="flavor-option${active ? ' active' : ''}"
-        data-flavor="${flavor.id}"
-        role="radio"
-        aria-checked="${active}"
-        ${available ? '' : 'disabled'}
-      >${flavor.name}</button>
-    `;
-  }).join('');
+  if (priceEl) {
+    priceEl.innerHTML = data ? `${data.price} <span>DH</span>` : '— <span>DH</span>';
+  }
+  if (addBtn) addBtn.disabled = !available;
 }
 
-function renderFlavorsOverview() {
-  flavorsGrid.innerHTML = flavors.map((flavor) => {
-    const minPrice = getMinPriceForFlavor(flavor.id);
-    const active = selectedFlavorId === flavor.id;
+function setGallerySlide(card, index) {
+  const product = getProduct(card.dataset.productId);
+  if (!product) return;
 
-    return `
-      <article class="flavor-card${active ? ' active' : ''}" data-flavor-card="${flavor.id}" tabindex="0">
-        ${flavor.tag ? `<span class="flavor-card-tag">${flavor.tag}</span>` : ''}
-        <h4 class="flavor-card-name">${flavor.name}</h4>
-        <p class="flavor-card-desc">${flavor.description}</p>
-        ${minPrice ? `<p class="flavor-card-from">À partir de ${minPrice} DH</p>` : ''}
-      </article>
-    `;
-  }).join('');
+  const total = product.images.length;
+  const slide = ((index % total) + total) % total;
+  card.dataset.slide = slide;
+
+  const track = card.querySelector('.product-gallery-track');
+  if (track) track.style.transform = `translateX(-${slide * 100}%)`;
+
+  card.querySelectorAll('.gallery-dot').forEach((dot, i) => {
+    dot.classList.toggle('active', i === slide);
+  });
 }
 
-function updateConfiguratorDisplay() {
-  const flavor = getFlavor(selectedFlavorId);
-  const size = getSize(selectedSizeId);
-  const data = getVariantData(selectedFlavorId, selectedSizeId);
-  const available = isVariantAvailable(selectedFlavorId, selectedSizeId);
-  const variantId = getCurrentVariantId();
+function initProductGallery(card) {
+  const gallery = card.querySelector('.product-gallery');
+  if (!gallery) return;
 
-  configuratorImage.classList.add('is-changing');
-  const imgSrc = getVariantImage(selectedFlavorId, selectedSizeId);
-  configuratorImage.onload = () => configuratorImage.classList.remove('is-changing');
-  configuratorImage.onerror = () => {
-    configuratorImage.src = fallbackImages[selectedFlavorId] || 'design-logo.png';
-    configuratorImage.classList.remove('is-changing');
-  };
-  configuratorImage.src = imgSrc;
-  configuratorImage.alt = `${flavor?.name} — ${size?.name}`;
+  let touchStartX = 0;
+  let touchDeltaX = 0;
 
-  if (flavor?.tag) {
-    configuratorTag.textContent = flavor.tag;
-    configuratorTag.hidden = false;
-  } else {
-    configuratorTag.hidden = true;
+  gallery.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchDeltaX = 0;
+  }, { passive: true });
+
+  gallery.addEventListener('touchmove', (e) => {
+    touchDeltaX = e.changedTouches[0].screenX - touchStartX;
+  }, { passive: true });
+
+  gallery.addEventListener('touchend', () => {
+    if (Math.abs(touchDeltaX) < 40) return;
+    const current = Number(card.dataset.slide) || 0;
+    setGallerySlide(card, touchDeltaX < 0 ? current + 1 : current - 1);
+  }, { passive: true });
+}
+
+function initProductCards() {
+  if (!productsGrid) return;
+
+  productsGrid.innerHTML = products.map(renderProductCard).join('');
+  productsGrid.querySelectorAll('.product-card').forEach((card) => {
+    initProductGallery(card);
+    updateCardPrice(card);
+  });
+
+  productsGrid.addEventListener('click', (e) => {
+    const card = e.target.closest('.product-card');
+    if (!card) return;
+
+    const sizeBtn = e.target.closest('.format-btn');
+    if (sizeBtn && !sizeBtn.disabled) {
+      card.dataset.size = sizeBtn.dataset.size;
+      card.querySelectorAll('.format-btn').forEach((btn) => {
+        btn.classList.toggle('active', btn === sizeBtn);
+      });
+      updateCardPrice(card);
+      return;
+    }
+
+    if (e.target.closest('.gallery-prev')) {
+      setGallerySlide(card, Number(card.dataset.slide) - 1);
+      return;
+    }
+
+    if (e.target.closest('.gallery-next')) {
+      setGallerySlide(card, Number(card.dataset.slide) + 1);
+      return;
+    }
+
+    const dot = e.target.closest('.gallery-dot');
+    if (dot) {
+      setGallerySlide(card, Number(dot.dataset.slide));
+      return;
+    }
+
+    if (e.target.closest('.product-add-cart')) {
+      const variantId = makeVariantId(card.dataset.productId, card.dataset.size);
+      addToCart(variantId);
+    }
+  });
+}
+
+// ── Custom Order ──────────────────────────────
+const BIRTHDAY_PATTERN = /\b(birthday|birthdays|birth\s*day|bday|anniversaire|anniversaires)\b/i;
+
+function isBirthdayOccasion(value) {
+  return BIRTHDAY_PATTERN.test(value.trim());
+}
+
+function openCustomOrderModal() {
+  customOrderForm.reset();
+  customOrderBirthdayError.hidden = true;
+  customOrderModal.classList.add('active');
+  customOrderModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCustomOrderModal() {
+  customOrderModal.classList.remove('active');
+  customOrderModal.setAttribute('aria-hidden', 'true');
+  if (!orderModal.classList.contains('active') && !cartOverlay.classList.contains('active')) {
+    document.body.style.overflow = '';
+  }
+}
+
+function formatCustomOrderDate(value) {
+  if (!value) return '';
+  const [year, month, day] = value.split('-');
+  return `${day}/${month}/${year}`;
+}
+
+function buildCustomOrderMessage(data) {
+  const lines = [
+    'Commande sur mesure Velmisu',
+    '━━━━━━━━━━━━━━━━',
+    '',
+    `Nom: ${data.name}`,
+    `Occasion: ${data.occasion}`,
+    `Date de l'événement: ${data.eventDate}`,
+    '',
+    'Demande personnalisée:',
+    data.details,
+    '',
+    `Contact (${data.contactMethod}): ${data.contact}`,
+  ];
+
+  if (data.imageName) {
+    lines.push('', `Image d'inspiration: ${data.imageName} (à joindre dans WhatsApp)`);
   }
 
-  configuratorTitle.textContent = `${flavor?.name || ''} — ${size?.name || ''}`;
-  configuratorDesc.textContent = flavor?.description || '';
-  configuratorUnavailable.hidden = available;
-  configuratorPrice.innerHTML = available
-    ? `${data.price} <span>DH</span>`
-    : '— <span>DH</span>';
-
-  configuratorAddCart.disabled = !available;
-  configuratorOrder.disabled = !available;
-  configuratorAddCart.dataset.variantId = variantId;
-  configuratorOrder.dataset.variantId = variantId;
-
-  renderSizeSelector();
-  renderFlavorSelector();
-  renderFlavorsOverview();
+  lines.push('', '━━━━━━━━━━━━━━━━');
+  return lines.join('\n');
 }
 
-function selectSize(sizeId) {
-  if (!getSize(sizeId)) return;
-  selectedSizeId = sizeId;
-  updateConfiguratorDisplay();
-}
+function initCustomOrder() {
+  customOrderBtn.addEventListener('click', openCustomOrderModal);
+  customOrderModalClose.addEventListener('click', closeCustomOrderModal);
 
-function selectFlavor(flavorId) {
-  if (!getFlavor(flavorId)) return;
-  selectedFlavorId = flavorId;
-  if (!isVariantAvailable(selectedFlavorId, selectedSizeId)) {
-    const fallbackSize = sizes.find((s) => isVariantAvailable(flavorId, s.id));
-    if (fallbackSize) selectedSizeId = fallbackSize.id;
-  }
-  updateConfiguratorDisplay();
-}
-
-function initConfigurator() {
-  renderSizeSelector();
-  renderFlavorSelector();
-  renderFlavorsOverview();
-  updateConfiguratorDisplay();
-
-  sizeSelector.addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-size]');
-    if (!btn || btn.disabled) return;
-    selectSize(btn.dataset.size);
+  customOrderModal.addEventListener('click', (e) => {
+    if (e.target === customOrderModal) closeCustomOrderModal();
   });
 
-  flavorSelector.addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-flavor]');
-    if (!btn || btn.disabled) return;
-    selectFlavor(btn.dataset.flavor);
+  customOrderOccasion.addEventListener('input', () => {
+    if (!isBirthdayOccasion(customOrderOccasion.value)) {
+      customOrderBirthdayError.hidden = true;
+    }
   });
 
-  flavorsGrid.addEventListener('click', (e) => {
-    const card = e.target.closest('[data-flavor-card]');
-    if (!card) return;
-    selectFlavor(card.dataset.flavorCard);
-    document.getElementById('productConfigurator').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-
-  flavorsGrid.addEventListener('keydown', (e) => {
-    if (e.key !== 'Enter' && e.key !== ' ') return;
-    const card = e.target.closest('[data-flavor-card]');
-    if (!card) return;
+  customOrderForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    selectFlavor(card.dataset.flavorCard);
-  });
 
-  configuratorAddCart.addEventListener('click', () => {
-    addToCart(getCurrentVariantId());
-  });
+    const name = document.getElementById('customOrderName').value.trim();
+    const occasion = customOrderOccasion.value.trim();
+    const eventDate = formatCustomOrderDate(document.getElementById('customOrderDate').value);
+    const details = document.getElementById('customOrderDetails').value.trim();
+    const contactMethod = document.getElementById('customOrderContactMethod').value;
+    const contact = document.getElementById('customOrderContact').value.trim();
+    const imageName = customOrderImage.files[0]?.name || '';
 
-  configuratorOrder.addEventListener('click', () => {
-    openOrderModal(getCurrentVariantId());
+    if (isBirthdayOccasion(occasion)) {
+      customOrderBirthdayError.hidden = false;
+      customOrderOccasion.focus();
+      return;
+    }
+
+    const message = buildCustomOrderMessage({
+      name,
+      occasion,
+      eventDate,
+      details,
+      contactMethod,
+      contact,
+      imageName,
+    });
+
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+    closeCustomOrderModal();
   });
 }
 
@@ -643,6 +704,7 @@ orderModal.addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     if (orderModal.classList.contains('active')) closeOrderModal();
+    else if (customOrderModal.classList.contains('active')) closeCustomOrderModal();
     else if (cartOverlay.classList.contains('active')) closeCart();
   }
 });
@@ -757,5 +819,6 @@ window.addEventListener('scroll', () => {
 });
 
 // ── Init ──────────────────────────────────────
-initConfigurator();
+initCustomOrder();
+initProductCards();
 updateCartUI();
