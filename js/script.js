@@ -37,7 +37,7 @@ const products = [
     description: 'Biscuits Lotus caramélisés, crème vanillée et touche de spéculoos maison.',
     tag: 'Gourmand',
     available: true,
-    images: ['IMG_6004.JPG', 'images/lotus-medium.jpg', 'design-logo.png'],
+    images: ['IMG_lotus.JPG', 'img_lotus.jpg', 'img_lotus.jpg'],
     sizes: {
       small:  { price: 35,  available: true },
       medium: { price: 48,  available: true },
