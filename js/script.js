@@ -51,7 +51,7 @@ const products = [
     description: 'Crème mascarpone légèrement acidulée, zeste de citron frais et biscuit imbibé au limoncello.',
     tag: 'Fraîcheur',
     available: true,
-    images: ['IMG_6003.jpg', 'images/lemon-medium.jpg', 'design-logo.png'],
+    images: ['img_lemon.jpg', 'img_lemon.jpg', 'img_lemon.jpg'],
     sizes: {
       small:  { price: 35,  available: true },
       medium: { price: 48,  available: true },
@@ -65,7 +65,7 @@ const products = [
     description: 'L\'équilibre parfait entre la fraîcheur du citron et l\'intensité du cacao — une création unique Velmisu.',
     tag: 'Signature',
     available: true,
-    images: ['IMG_6003.jpg', 'IMG_6004.JPG', 'design-logo.png'],
+    images: ['IMG_cacao.jpg', 'IMG_cacao.JPG', 'img_cacao.jpg'],
     sizes: {
       small:  { price: 35,  available: true },
       medium: { price: 48,  available: true },
