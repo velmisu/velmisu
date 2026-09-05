@@ -23,7 +23,7 @@ const products = [
     description: 'La recette originale italienne — mascarpone crémeux, espresso intense et cacao amer.',
     tag: 'Best-seller',
     available: true,
-    images: ['IMG_6004.JPG', 'IMG_6003.jpg', 'img_7097.jpg'],
+    images: ['IMG_cacao.JPG', 'IMG_cacao.jpg', 'img_cacao.jpg'],
     sizes: {
       small:  { price: 30,  available: true },
       medium: { price: 45,  available: true },
@@ -51,7 +51,7 @@ const products = [
     description: 'Crème mascarpone légèrement acidulée, zeste de citron frais et biscuit imbibé au limoncello.',
     tag: 'Fraîcheur',
     available: true,
-    images: ['img_lemon.jpg', 'img_lemon.jpg', 'img_lemon.jpg'],
+    images: ['img_lemon.jpg'],
     sizes: {
       small:  { price: 35,  available: true },
       medium: { price: 48,  available: true },
