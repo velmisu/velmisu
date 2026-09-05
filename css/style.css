@@ -1121,7 +1121,7 @@ input {
 
 /* ---- Footer ---- */
 .footer {
-  background: var(--black);
+  background: var(--brown-pale);
   color: var(--white);
   padding: 2.5rem 0;
 }
@@ -1138,12 +1138,12 @@ input {
   font-family: var(--font-serif);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--white);
+  color: var(--brown-dark);
 }
 
 .footer p {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--brown-dark);
 }
 
 /* ---- Modal ---- */
